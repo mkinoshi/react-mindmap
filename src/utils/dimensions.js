@@ -20,8 +20,13 @@ export const getDimensions = (html, style, classname) => {
   Object.keys(style).forEach((rule) => { el.style[rule] = style[rule]; });
   document.body.append(el);
 
-  dimensions.width = el.offsetWidth;
-  dimensions.height = el.offsetHeight;
+  if (el.offsetWidth > el.offsetHeight) {
+    dimensions.width = el.offsetWidth;
+    dimensions.height = el.offsetWidth;
+  } else {
+    dimensions.width = el.offsetHeight;
+    dimensions.height = el.offsetHeight;
+  }
 
   el.remove();
   return dimensions;
